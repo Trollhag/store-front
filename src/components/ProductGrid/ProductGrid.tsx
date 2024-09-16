@@ -32,10 +32,10 @@ export const ProductGrid = () => {
 
   useEffect(() => {
     // Trigger first load when search or category changes.
-    if (canLoadMore && (search || category)) {
+    if (canLoadMore && products.length === 0) {
       loadMore()
     }
-  }, [canLoadMore, category, loadMore, search])
+  }, [canLoadMore, loadMore, products.length])
 
   if (status === ProductsStatus.Failed) {
     return <Typography align="center">Failed to load products.</Typography>

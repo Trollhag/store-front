@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useRef } from 'react'
 
 export interface InfiniteScrollProps {
   offset?: number
@@ -18,7 +18,6 @@ const isElementVisible = <Element extends HTMLElement>(element: Element | null) 
 }
 
 export const InfiniteScroll = ({ offset = -50, children, action, disable }: InfiniteScrollProps) => {
-  const [mounted, setMounted] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   const checkElementVisible = useCallback(() => {
@@ -37,13 +36,6 @@ export const InfiniteScroll = ({ offset = -50, children, action, disable }: Infi
       window.removeEventListener('scroll', checkElementVisible)
     }
   }, [checkElementVisible, disable])
-
-  useEffect(() => {
-    if (!mounted && !disable) {
-      checkElementVisible()
-      setMounted(true)
-    }
-  }, [checkElementVisible, disable, mounted])
 
   return (
     <>
