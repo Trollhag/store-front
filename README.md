@@ -6,10 +6,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-nex
 
 ## Getting started
 
-Run in development mode:
+Installing dependencies:
 
 ```bash
 npm install
+npx playwright install-deps
+```
+
+Run in development mode:
+
+```bash
 npm run dev
 ```
 
