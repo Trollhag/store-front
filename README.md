@@ -1,5 +1,7 @@
 # @trollhag/store-front
 
+A minimalist product listing POC with infinite load, and category and search filtering.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app) with Material UI installed.
 
 ## Getting started
