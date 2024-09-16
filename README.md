@@ -25,10 +25,11 @@ npm run build
 npm run start
 ```
 
-## Assumtions based on loose requirements
+## Assumptions based on loose requirements
 
 - Filtering products (either by category or search) is done server side to prevent issues for example when loading more products and no new products appears because the result did not match the filters; and avoid forcing to load all products.
 
-## Misstakes made
+## Mistakes made
 
-- Tests where supposed to be unit tests, but is now end-to-end tests. 
+- Tests were supposed to be unit tests, but are now end-to-end tests.
+
