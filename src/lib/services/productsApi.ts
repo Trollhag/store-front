@@ -14,7 +14,11 @@ export interface Product {
   description: string
   thumbnail: string
   price: number
+  discountPercentage?: number
+  stock: number
   category: string
+  rating: number
+  images: string[]
 }
 
 export interface ProductsApiResponse {
@@ -37,7 +41,7 @@ export const productsApi = demoApi.injectEndpoints({
   endpoints: (build) => ({
     getCategories: build.query<Category[], void>({
       query: (_: void) => getQuery('categories'),
-      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
           dispatch(setCategories(data))
@@ -51,7 +55,7 @@ export const productsApi = demoApi.injectEndpoints({
     }),
     getProducts: build.query<ProductsApiResponse, ProductsApiQuery | void>({
       query: ({ skip = 0, limit = 20 } = {}) => getQuery('', { skip, limit }),
-      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           dispatch(setStatus(ProductsStatus.Loading))
           const { data } = await queryFulfilled
@@ -76,7 +80,7 @@ export const productsApi = demoApi.injectEndpoints({
     getProductsByCategory: build.query<ProductsApiResponse, { category: string } & ProductsApiQuery>({
       query: ({ category, skip = 0, limit = 20 }) =>
         getQuery(`category/${encodeURIComponent(category)}`, { skip, limit }),
-      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           dispatch(setStatus(ProductsStatus.Loading))
           const { data } = await queryFulfilled

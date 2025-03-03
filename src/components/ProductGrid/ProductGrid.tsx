@@ -16,7 +16,7 @@ export const ProductGrid = () => {
   const { status, search, category, data: products } = useAppSelector((store) => store.products)
   const canLoadMore = status === ProductsStatus.Idle
 
-  const [getAllProducts] = useLazyGetProductsQuery()
+  const [getProducts] = useLazyGetProductsQuery()
   const [searchProducts] = useLazySearchProductsQuery()
   const [getProductsByCategory] = useLazyGetProductsByCategoryQuery()
 
@@ -27,8 +27,8 @@ export const ProductGrid = () => {
     if (category) {
       return getProductsByCategory({ category, limit: 20, skip: products.length })
     }
-    return getAllProducts({ limit: 20, skip: products.length })
-  }, [category, getAllProducts, getProductsByCategory, products.length, search, searchProducts])
+    return getProducts({ limit: 20, skip: products.length })
+  }, [category, getProducts, getProductsByCategory, products.length, search, searchProducts])
 
   useEffect(() => {
     // Trigger first load when search or category changes.
